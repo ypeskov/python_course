@@ -1,1 +1,1 @@
-# python_course
+# OTUS Python Course
