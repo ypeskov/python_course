@@ -6,6 +6,7 @@ from math import sqrt, pow
 # import operator
 from functools import wraps
 from time import time
+from itertools import repeat
 
 
 def timer(f):
@@ -14,24 +15,35 @@ def timer(f):
         time_start = time()
         result = f(*args, **kwargs)
         time_end = time()
-        print('%s(%s, %s) took: %f sec' % (f.__name__, args, kwargs, time_end-time_start)) # noqa
+        print('%s() took: %f sec' % (f.__name__, time_end-time_start))
 
         return result
 
     return wrapped
 
 
-def power(*args, power=2):
-    """ Accepts numbers as separate arguments """
-
+@timer
+def power1(*args, power=2):
     def p(x):
         return x ** power
 
-    # lst = list(map(lambda x: pow(x, power), args))
-    # lst = [pow(x, power) for x in args]
     lst = list(map(p, args))
-
     return lst
+
+
+@timer
+def power2(*args, power=2):
+    return [pow(x, power) for x in args]
+
+
+@timer
+def power3(*args, power=2):
+    return list(map(lambda x: pow(x, power), args))
+
+
+@timer
+def power4(*args, power=2):
+    return(list(map(pow, args, repeat(power))))
 
 
 def is_prime(n):
@@ -52,7 +64,6 @@ def is_prime(n):
     return True
 
 
-@timer
 def filter_func1(numbers, filter_type):
     IS_EVEN = 'even'
     IS_ODD = 'odd'
@@ -84,10 +95,13 @@ def filter_func2(numbers, filter_type):
 
 
 if __name__ == '__main__':
-    print(power(1, 4, 5))
-    print(power(1, 4, 5, power=4))
+    nums = [5, 3, 5] * 10_000_000
+    power1(*nums, power=5)
+    power2(*nums, power=5)
+    power3(*nums, power=5)
+    power4(*nums, power=5)
 
-    print(filter_func1([1, 4, 6, 8, 9], 'even'))
-    print(filter_func2([1, 4, 6, 8, 9], 'even'))
-    print(filter_func2([1, 4, 6, 8, 9], 'odd'))
-    print(filter_func2([1, 2, 3, 4, 5, 6, 8, 9], 'prime'))
+    # print(filter_func1([1, 4, 6, 8, 9], 'even'))
+    # print(filter_func2([1, 4, 6, 8, 9], 'even'))
+    # print(filter_func2([1, 4, 6, 8, 9], 'odd'))
+    # print(filter_func2([1, 2, 3, 4, 5, 6, 8, 9], 'prime'))
