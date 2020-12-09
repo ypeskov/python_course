@@ -3,7 +3,6 @@ Homework for the lesson #3
 """
 
 from math import sqrt, pow
-# import operator
 from functools import wraps
 from time import time
 from itertools import repeat
@@ -101,7 +100,7 @@ if __name__ == '__main__':
     power3(*nums, power=5)
     power4(*nums, power=5)
 
-    # print(filter_func1([1, 4, 6, 8, 9], 'even'))
-    # print(filter_func2([1, 4, 6, 8, 9], 'even'))
-    # print(filter_func2([1, 4, 6, 8, 9], 'odd'))
-    # print(filter_func2([1, 2, 3, 4, 5, 6, 8, 9], 'prime'))
+    print(filter_func1([1, 4, 6, 8, 9], 'even'))
+    print(filter_func2([1, 4, 6, 8, 9], 'even'))
+    print(filter_func2([1, 4, 6, 8, 9], 'odd'))
+    print(filter_func2([1, 2, 3, 4, 5, 6, 8, 9], 'prime'))
