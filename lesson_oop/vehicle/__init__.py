@@ -4,11 +4,15 @@ from datetime import date
 
 class AbstractVehicle(ABC):
     def __init__(self, weight: float, date_built: date):
-        self.weight = weight
+        self.weight = weight  # kg
 
         if not isinstance(date_built, date):
             raise ValueError('date_built must be of type datetime.date')
         self.date_built = date_built
+
+    def start(self):
+        self.prepare()
+        self.move()
 
     @abstractmethod
     def prepare(self):
@@ -23,7 +27,7 @@ class AbstractVehicle(ABC):
         pass
 
     def move(self):
-        print(f'{self.__class__.__name__} is moving forward')
+        print(f'{self.__class__.__name__} starts moving forward')
 
     @abstractmethod
     def stop(self):

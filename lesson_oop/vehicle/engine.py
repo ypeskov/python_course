@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from typing import Optional
+
 from vehicle import AbstractVehicle
 from vehicle.noownerexception import NoOwnerException
 
@@ -8,7 +10,7 @@ class Engine:
     power: int  # horse powers
     volume: float  # litres
     fuel_consumption: float  # litres/hour
-    owner: AbstractVehicle = None  # carrier of this engine
+    owner: Optional[AbstractVehicle] = None  # carrier of this engine
 
     def set_owner(self, owner: AbstractVehicle):
         self.owner = owner

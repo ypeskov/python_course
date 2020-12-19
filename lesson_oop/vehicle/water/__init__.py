@@ -1,6 +1,7 @@
+from datetime import date
+
 from abc import ABC
 from vehicle import AbstractVehicle
-from datetime import date
 
 
 class AbstractWaterVehicle(AbstractVehicle, ABC):
