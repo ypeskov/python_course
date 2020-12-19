@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 from datetime import date
+from numbers import Real
 
 
 class AbstractVehicle(ABC):
-    def __init__(self, weight: float, date_built: date):
-        if not isinstance(weight, float):
-            raise ValueError('weight must be int')
+    def __init__(self, weight: Real, date_built: date):
+        if not isinstance(weight, Real):
+            raise ValueError(f'weight of {self.__class__.__name__} must be int')
         self.weight = weight  # kg
 
         if not isinstance(date_built, date):

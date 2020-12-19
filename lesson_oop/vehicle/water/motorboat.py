@@ -1,4 +1,5 @@
 from datetime import date
+from numbers import Real
 
 from vehicle.water import AbstractWaterVehicle
 from vehicle.engine import Engine
@@ -6,7 +7,7 @@ from vehicle.enginemixin import EngineMixin
 
 
 class MotorBoat(EngineMixin, AbstractWaterVehicle):
-    def __init__(self, weight: float, date_built: date, displacement: float, engine: Engine):
+    def __init__(self, weight: Real, date_built: date, displacement: Real, engine: Engine):
         super().__init__(weight, date_built, displacement)
         self.engine = engine
 

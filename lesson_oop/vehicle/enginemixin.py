@@ -1,3 +1,5 @@
+from typing import Union
+
 class EngineMixin:
     def prepare(self):
         self.engine.start()

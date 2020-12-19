@@ -1,15 +1,16 @@
 from datetime import date
 from abc import ABC, abstractmethod
 from typing import Union
+from numbers import Real
 
 from vehicle import AbstractVehicle
 
 
 class AbstractGroundVehicle(AbstractVehicle, ABC):
-    def __init__(self, weight: float, date_built: date, max_speed: Union[float, None] = None):
+    def __init__(self, weight: Real, date_built: date, max_speed: Union[float, None] = None):
         super().__init__(weight, date_built)
 
-        if float is None:
+        if max_speed is None:
             raise ValueError('max speed cannot be None')
         self.max_speed = max_speed  # km/h
 
