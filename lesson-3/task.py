@@ -42,7 +42,7 @@ def power3(*args, power=2):
 
 @timer
 def power4(*args, power=2):
-    return(list(map(pow, args, repeat(power))))
+    return list(map(pow, args, repeat(power)))
 
 
 def is_prime(n):
@@ -63,6 +63,7 @@ def is_prime(n):
     return True
 
 
+@timer
 def filter_func1(numbers, filter_type):
     IS_EVEN = 'even'
     IS_ODD = 'odd'
@@ -81,6 +82,7 @@ def filter_func1(numbers, filter_type):
     return filtered_nums
 
 
+@timer
 def filter_func2(numbers, filter_type):
     """ compact variant of the filter function """
 
@@ -95,12 +97,13 @@ def filter_func2(numbers, filter_type):
 
 if __name__ == '__main__':
     nums = [5, 3, 5] * 10_000_000
-    power1(*nums, power=5)
-    power2(*nums, power=5)
-    power3(*nums, power=5)
-    power4(*nums, power=5)
+    # power1(*nums, power=5)
+    # power2(*nums, power=5)
+    # power3(*nums, power=5)
+    # power4(*nums, power=5)
 
-    print(filter_func1([1, 4, 6, 8, 9], 'even'))
-    print(filter_func2([1, 4, 6, 8, 9], 'even'))
-    print(filter_func2([1, 4, 6, 8, 9], 'odd'))
-    print(filter_func2([1, 2, 3, 4, 5, 6, 8, 9], 'prime'))
+    # filter_func1(nums, 'even')
+    # filter_func2(nums, 'even')
+    # filter_func2(nums, 'odd')
+    filter_func1(nums, 'prime')
+    filter_func2(nums, 'prime')
