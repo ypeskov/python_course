@@ -7,6 +7,9 @@ from vehicle import AbstractVehicle
 class AbstractWaterVehicle(AbstractVehicle, ABC):
     def __init__(self, weight: float, date_built: date, displacement: float):
         super().__init__(weight, date_built)
+
+        if not isinstance(displacement, float):
+            raise ValueError('displacement must be float')
         self.displacement = displacement
 
     def stop(self):

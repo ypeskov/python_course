@@ -4,6 +4,8 @@ from datetime import date
 
 class AbstractVehicle(ABC):
     def __init__(self, weight: float, date_built: date):
+        if not isinstance(weight, float):
+            raise ValueError('weight must be int')
         self.weight = weight  # kg
 
         if not isinstance(date_built, date):
