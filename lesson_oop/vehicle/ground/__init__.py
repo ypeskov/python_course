@@ -16,10 +16,10 @@ class AbstractGroundVehicle(AbstractVehicle, ABC):
 
     def stop(self):
         self.prepare_stop()
-        self.close_doors()
+        self.final_actions()
 
     @abstractmethod
-    def close_doors(self):
+    def final_actions(self):
         pass
 
     def __str__(self):
