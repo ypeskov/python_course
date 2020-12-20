@@ -1,5 +1,5 @@
 from datetime import date
-from numbers import Real
+from typing import Union
 
 from vehicle.ground import AbstractGroundVehicle
 from vehicle.engine import Engine
@@ -7,7 +7,11 @@ from vehicle.enginemixin import EngineMixin
 
 
 class Train(EngineMixin, AbstractGroundVehicle):
-    def __init__(self, weight: Real, date_built: date, max_speed: Real, engine: Engine):
+    def __init__(self,
+                 weight: Union[int, float],
+                 date_built: date,
+                 max_speed: Union[int, float],
+                 engine: Engine):
         super().__init__(weight, date_built, max_speed)
 
         if not isinstance(engine, Engine):

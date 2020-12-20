@@ -1,15 +1,19 @@
 from datetime import date
 from abc import ABC
-from numbers import Real
+from numbers import Number
+from typing import Union
 
 from vehicle import AbstractVehicle
 
 
 class AbstractWaterVehicle(AbstractVehicle, ABC):
-    def __init__(self, weight: Real, date_built: date, displacement: Real):
+    def __init__(self,
+                 weight: Union[int, float],
+                 date_built: date,
+                 displacement: Union[int, float]):
         super().__init__(weight, date_built)
 
-        if not isinstance(displacement, Real):
+        if not isinstance(displacement, Number):
             raise ValueError('displacement must be float')
         self.displacement = displacement
 

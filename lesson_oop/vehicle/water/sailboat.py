@@ -1,14 +1,19 @@
 from datetime import date
+from typing import Union
+from numbers import Number
 
 from vehicle.water import AbstractWaterVehicle
-from numbers import Real
 
 
 class SailBoat(AbstractWaterVehicle):
-    def __init__(self, weight: Real, date_built: date, displacement: Real, sails_area: Real):
+    def __init__(self,
+                 weight: Union[int, float],
+                 date_built: date,
+                 displacement: Union[int, float],
+                 sails_area: Union[int, float]):
         super().__init__(weight, date_built, displacement)
 
-        if not isinstance(sails_area, Real):
+        if not isinstance(sails_area, Number):
             raise ValueError(f'sails_area must be Real number for {self.__class__.__name__}')
         self.sails_area = sails_area
 

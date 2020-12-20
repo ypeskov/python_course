@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 from datetime import date
-from numbers import Real
+from numbers import Number
+from typing import Union
 
 
 class AbstractVehicle(ABC):
-    def __init__(self, weight: Real, date_built: date):
-        if not isinstance(weight, Real):
+    def __init__(self, weight: Union[int, float], date_built: date):
+        if not isinstance(weight, Number):
             raise ValueError(f'weight of {self.__class__.__name__} must be a real number')
         self.weight = weight  # kg
 
