@@ -1,6 +1,3 @@
-from typing import Union
-
-
 class EngineMixin:
     def prepare_start(self):
         self.engine.start()
