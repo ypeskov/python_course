@@ -6,7 +6,7 @@ from numbers import Real
 class AbstractVehicle(ABC):
     def __init__(self, weight: Real, date_built: date):
         if not isinstance(weight, Real):
-            raise ValueError(f'weight of {self.__class__.__name__} must be int')
+            raise ValueError(f'weight of {self.__class__.__name__} must be a real number')
         self.weight = weight  # kg
 
         if not isinstance(date_built, date):
@@ -14,15 +14,15 @@ class AbstractVehicle(ABC):
         self.date_built = date_built
 
     def start(self):
-        self.prepare()
+        self.prepare_start()
         self.move()
 
     @abstractmethod
-    def prepare(self):
+    def prepare_start(self):
         pass
 
     @abstractmethod
-    def sleep(self):
+    def prepare_stop(self):
         pass
 
     @abstractmethod

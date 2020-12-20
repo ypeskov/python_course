@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     engine = Engine(power=500, volume=5, fuel_consumption=20)
     motor_boat = MotorBoat(weight=1000, date_built=date_built, displacement=300, engine=engine)
-    engine.set_owner(motor_boat)
+    engine.set_carrier(motor_boat)
     try:
         demo(motor_boat)
     except NoOwnerException as ex:
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     engine = Engine(power=5000, volume=30, fuel_consumption=200)
     try:
         train = Train(weight=100_000, date_built=date(2001, 1, 15), max_speed=120, engine=engine)
-        engine.set_owner(train)
+        engine.set_carrier(train)
         try:
             demo(train)
         except NoOwnerException as ex:

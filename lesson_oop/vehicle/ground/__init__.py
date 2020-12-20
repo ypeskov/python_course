@@ -7,19 +7,19 @@ from vehicle import AbstractVehicle
 
 
 class AbstractGroundVehicle(AbstractVehicle, ABC):
-    def __init__(self, weight: Real, date_built: date, max_speed: Union[float, None] = None):
+    def __init__(self, weight: Real, date_built: date, max_speed: Union[Real, None] = None):
         super().__init__(weight, date_built)
 
-        if max_speed is None:
+        if max_speed is None or not isinstance(max_speed, Real):
             raise ValueError('max speed cannot be None')
         self.max_speed = max_speed  # km/h
 
     def stop(self):
-        self.sleep()
-        self.turn_off_all()
+        self.prepare_stop()
+        self.close_doors()
 
     @abstractmethod
-    def turn_off_all(self):
+    def close_doors(self):
         pass
 
     def __str__(self):

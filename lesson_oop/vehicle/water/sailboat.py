@@ -12,10 +12,10 @@ class SailBoat(AbstractWaterVehicle):
             raise ValueError(f'sails_area must be Real number for {self.__class__.__name__}')
         self.sails_area = sails_area
 
-    def prepare(self):
+    def prepare_start(self):
         print(f'{self.__class__.__name__} is raising sails up')
 
-    def sleep(self):
+    def prepare_stop(self):
         print(f'{self.__class__.__name__} is taking sails down')
 
     def make_sound(self):

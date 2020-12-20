@@ -1,10 +1,11 @@
 from typing import Union
 
+
 class EngineMixin:
-    def prepare(self):
+    def prepare_start(self):
         self.engine.start()
 
-    def sleep(self):
+    def prepare_stop(self):
         self.engine.stop()
 
     def __str__(self):

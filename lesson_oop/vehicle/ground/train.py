@@ -17,7 +17,7 @@ class Train(EngineMixin, AbstractGroundVehicle):
     def make_sound(self):
         print(f'{self.__class__.__name__} makes "chuh-chuh-chuh"')
 
-    def turn_off_all(self):
-        print(f'{self.__class__.__name__} closes all doors')
+    def close_doors(self):
+        print(f'{self.__class__.__name__} is closing all doors')
 
 

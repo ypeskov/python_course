@@ -14,7 +14,7 @@ class AbstractWaterVehicle(AbstractVehicle, ABC):
         self.displacement = displacement
 
     def stop(self):
-        self.sleep()
+        self.prepare_stop()
         self.drop_anchor()
 
     def drop_anchor(self):
