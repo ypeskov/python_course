@@ -23,5 +23,3 @@ class Train(EngineMixin, AbstractGroundVehicle):
 
     def final_actions(self):
         print(f'{self.__class__.__name__} is closing all doors')
-
-
