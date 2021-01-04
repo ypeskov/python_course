@@ -1,12 +1,12 @@
 from datetime import date
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from typing import Union
 from numbers import Number
 
 from vehicle import AbstractVehicle
 
 
-class AbstractGroundVehicle(AbstractVehicle, ABC):
+class AbstractGroundVehicle(AbstractVehicle):
     def __init__(self,
                  weight: Union[int, float],
                  date_built: date,

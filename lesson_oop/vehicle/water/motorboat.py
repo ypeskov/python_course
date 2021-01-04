@@ -1,5 +1,4 @@
 from datetime import date
-from numbers import Real
 from typing import Union
 
 from vehicle.water import AbstractWaterVehicle

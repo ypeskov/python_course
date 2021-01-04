@@ -7,5 +7,5 @@ class EngineMixin:
 
     def __str__(self):
         output = super().__str__()
-        output += f'\n{self.__class__.__name__} characteristics. Engine [{self.engine}]'
+        output += f'\n{self.__class__.__name__} characteristics. Engine [{self.engine}]' # noqa
         return output

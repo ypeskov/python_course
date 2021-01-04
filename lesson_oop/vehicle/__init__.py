@@ -7,7 +7,7 @@ from typing import Union
 class AbstractVehicle(ABC):
     def __init__(self, weight: Union[int, float], date_built: date):
         if not isinstance(weight, Number):
-            raise ValueError(f'weight of {self.__class__.__name__} must be a real number')
+            raise ValueError(f'weight of {self.__class__.__name__} must be a real number') # noqa
         self.weight = weight  # kg
 
         if not isinstance(date_built, date):
@@ -38,4 +38,4 @@ class AbstractVehicle(ABC):
         pass
 
     def __str__(self):
-        return f'General characteristics. Built date: {self.date_built}, weight: {self.weight} kg'
+        return f'General characteristics. Built date: {self.date_built}, weight: {self.weight} kg' # noqa

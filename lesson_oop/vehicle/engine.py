@@ -17,7 +17,7 @@ class Engine:
 
     def _check_carrier(self):
         if not isinstance(self.owner, AbstractVehicle):
-            raise NoOwnerException(f'{self.__class__.__name__} must have a carrier')
+            raise NoOwnerException(f'{self.__class__.__name__} must have a carrier') # noqa
 
     def start(self):
         self._check_carrier()
@@ -28,4 +28,4 @@ class Engine:
         print(f'{self.owner.__class__.__name__} stops engine')
 
     def __str__(self):
-        return f'power: {self.power} hp, engine volume: {self.volume} L, fuel consumption: {self.fuel_consumption} L/h'
+        return f'power: {self.power} hp, engine volume: {self.volume} L, fuel consumption: {self.fuel_consumption} L/h' # noqa

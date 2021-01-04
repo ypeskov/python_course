@@ -1,12 +1,11 @@
 from datetime import date
-from abc import ABC
 from numbers import Number
 from typing import Union
 
 from vehicle import AbstractVehicle
 
 
-class AbstractWaterVehicle(AbstractVehicle, ABC):
+class AbstractWaterVehicle(AbstractVehicle):
     def __init__(self,
                  weight: Union[int, float],
                  date_built: date,
@@ -26,5 +25,5 @@ class AbstractWaterVehicle(AbstractVehicle, ABC):
 
     def __str__(self):
         output = super().__str__()
-        output += f'\nMarine characteristics. Displacement: {self.displacement} kg'
+        output += f'\nMarine characteristics. Displacement: {self.displacement} kg' # noqa
         return output
