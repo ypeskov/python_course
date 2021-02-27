@@ -2,10 +2,11 @@ import asyncio
 from datetime import datetime
 import json
 from asyncpg.exceptions import UniqueViolationError
+from loguru import logger
 
 from setup import db, init_db
-from models import User
-from fetchtools import fetch_users
+from models import User, Post
+from fetchtools import fetch_data
 
 
 async def add_users_if_required():
@@ -15,19 +16,38 @@ async def add_users_if_required():
 
 
 async def get_users_and_save():
-    users = await fetch_users()
+    logger.info('Starting fetching users')
+    users = await fetch_data(url='https://jsonplaceholder.typicode.com/users')
     # print(json.dumps(users, indent=4))
     for u in users:
-        user = User(name=u['name'], username=u['username'], email=u['email'], phone=u['phone'])
+        user = User(id=u['id'], name=u['name'], username=u['username'], email=u['email'], phone=u['phone'])
         try:
             await user.create()
+            logger.info(f'User {user.username} created')
         except UniqueViolationError as e:
             print(f'Skipping duplicate: [{user.username}]')
+
+    logger.info('All users are created')
+
+
+async def get_posts_and_save():
+    logger.info('Starting fetch posts')
+    posts = await fetch_data(url='https://jsonplaceholder.typicode.com/posts')
+    # print(json.dumps(posts, indent=4))
+    for p in posts:
+        post = Post(user_id=p['userId'], title=p['title'], body=p['body'])
+        await post.create()
+        logger.info(f'Post {post.title} is created')
+
+    logger.info('All posts are created')
 
 
 async def main():
     await init_db()
     # await add_users_if_required()
-    await asyncio.gather(get_users_and_save())
+    await asyncio.gather(get_users_and_save(), get_posts_and_save())
+
+    await db.pop_bind().close()
+
 
 asyncio.run(main())

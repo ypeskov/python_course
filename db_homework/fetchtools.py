@@ -1,13 +1,13 @@
 import asyncio
-import loguru
-import aiohttp
 import json
 
+from loguru import logger
 from aiohttp import ClientSession
 
 
-async def fetch_users():
-    url = 'https://jsonplaceholder.typicode.com/users'
+async def fetch_data(url: str = None) -> json:
+    if url is None:
+        raise Exception('url must be a string')
 
     async with ClientSession() as session:
         response = await session.request(method='GET', url=url)
@@ -17,8 +17,8 @@ async def fetch_users():
 
 
 async def module_run():
-    users = await fetch_users()
-    print(type(users))
+    users = await fetch_data('https://jsonplaceholder.typicode.com/users')
+    logger.info(users)
 
 if __name__ == '__main__':
     asyncio.run(module_run())
