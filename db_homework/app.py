@@ -7,6 +7,7 @@ from loguru import logger
 from setup import db, init_db
 from models import User, Post
 from fetchtools import fetch_data
+from cleartables import clear_tables
 
 
 async def add_users_if_required():
@@ -20,7 +21,11 @@ async def get_users_and_save():
     users = await fetch_data(url='https://jsonplaceholder.typicode.com/users')
     # print(json.dumps(users, indent=4))
     for u in users:
-        user = User(id=u['id'], name=u['name'], username=u['username'], email=u['email'], phone=u['phone'])
+        user = User(id=u['id'],
+                    name=u['name'],
+                    username=u['username'],
+                    email=u['email'],
+                    phone=u['phone'])
         try:
             await user.create()
             logger.info(f'User {user.username} created')
@@ -35,7 +40,10 @@ async def get_posts_and_save():
     posts = await fetch_data(url='https://jsonplaceholder.typicode.com/posts')
     # print(json.dumps(posts, indent=4))
     for p in posts:
-        post = Post(user_id=p['userId'], title=p['title'], body=p['body'])
+        post = Post(id=p['id'],
+                    user_id=p['userId'],
+                    title=p['title'],
+                    body=p['body'])
         await post.create()
         logger.info(f'Post {post.title} is created')
 
@@ -45,7 +53,10 @@ async def get_posts_and_save():
 async def main():
     await init_db()
     # await add_users_if_required()
-    await asyncio.gather(get_users_and_save(), get_posts_and_save())
+    await clear_tables()
+
+    await get_users_and_save()
+    await get_posts_and_save()
 
     await db.pop_bind().close()
 
