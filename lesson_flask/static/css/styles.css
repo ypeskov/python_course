@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+}
+
+.header {
+    font-weight: bold;
+    color: blue;
+    min-height: 20vh;
+    background-color: lightgray;
+}
+
+.content-container {
+    background-color: lightskyblue;
+}
+
+.login-button-container {
+   margin: 10% 10%;
+}
