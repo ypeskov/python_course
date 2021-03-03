@@ -12,13 +12,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 header">Тут могла быть ваша реклама</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'partials/navbar.html' %}
         </div>
     </div>
-    {% block content_1 %}{% endblock %}
+</div>
 
-    <script src="{{ url_for('static', filename='/js/index.js') }}"></script>
+{% block content_1 %}{% endblock %}
+
+<script src="{{ url_for('static', filename='/js/index.js') }}"></script>
 </body>
 </html>
