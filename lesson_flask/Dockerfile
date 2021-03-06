@@ -1,3 +1,7 @@
+# Run this image by commands:
+# To build: docker build -t flask_app .
+# To run: docker run -p 5000:5000 flask_app
+
 FROM python:3.9-buster
 
 RUN pip install poetry
