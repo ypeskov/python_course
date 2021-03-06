@@ -3,10 +3,10 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if active_page == 'login' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('auth_app.login') }}">Login</a>
             </li>
         </ul>

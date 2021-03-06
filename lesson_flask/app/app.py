@@ -9,7 +9,7 @@ app.register_blueprint(auth_app, url_prefix='/auth')
 
 @app.route('/', methods=['GET'], endpoint='home')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', active_page='home')
 
 
 if __name__ == '__main__':
