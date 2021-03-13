@@ -22,3 +22,7 @@ html, body {
 #logout {
     margin-left: 5%;
 }
+
+.password-item-container {
+    padding: 0 2em;
+}

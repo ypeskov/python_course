@@ -6,8 +6,8 @@
             <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('pages_app.home') }}">Home</a>
             </li>
-            <li class="nav-item {% if active_page == 'login' %}active{% endif %}">
-                <a class="nav-link" href="{{ url_for('auth_app.login') }}">Login</a>
+            <li class="nav-item {% if active_page == 'list-passwords' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('pages_app.list-passwords') }}">List Passwords</a>
             </li>
         </ul>
     </div>
