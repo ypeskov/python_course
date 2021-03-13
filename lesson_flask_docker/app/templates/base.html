@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'partials/navbar.html' %}
+        </div>
+    </div>
+</div>
+
+{% block content_1 %}{% endblock %}
+
+<script src="{{ url_for('static', filename='/js/index.js') }}"></script>
+</body>
+</html>

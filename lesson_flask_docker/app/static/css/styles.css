@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+}
+
+.content-container {
+    background-color: lightskyblue;
+}
+
+#login-button-container, .home-content {
+   margin: 10% 0%;
+}
+
+#brand-title {
+    font-weight: bold;
+    color: darkblue;
+}
+
+.hidden {
+    display: none;
+}
+
+#logout {
+    margin-left: 5%;
+}

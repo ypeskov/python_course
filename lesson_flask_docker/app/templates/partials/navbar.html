@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a id="brand-title" class="navbar-brand" href="#">Password Manager</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item {% if active_page == 'login' %}active{% endif %}">
+                <a class="nav-link" href="{{ url_for('auth_app.login') }}">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
