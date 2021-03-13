@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content_1 %}
+    <div class="container content-container">
+        <div class="row">
+            <div class="col-md-12">
+                {% for password in passwords %}
+                {{ password.resource_name }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

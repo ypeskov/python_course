@@ -4,9 +4,10 @@ services:
   web:
     build: .
     environment:
-      - TEST_VAR=Iamtestvar
+      - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres@db:5432/pswd
+      - SQLALCHEMY_TRACK_MODIFICATIONS=False
     volumes:
-      - .:/code
+      - ./app/:/app
     ports:
       - 5000:5000
     depends_on:
@@ -17,6 +18,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=pswd
     ports:
       - 5432:5432
 volumes:

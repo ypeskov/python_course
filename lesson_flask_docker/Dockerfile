@@ -7,7 +7,7 @@ COPY poetry.lock pyproject.toml ./
 
 RUN poetry install
 
-COPY app/ /app
+COPY ./app/ /app
 
 EXPOSE 5000
 
