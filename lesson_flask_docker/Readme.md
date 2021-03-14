@@ -5,6 +5,8 @@ TODO:
 2. Add encryption
 3. Move encryption to the client side not to send a password not encrypted via the network.
 
-To run:  
+To run in develop,emt:  
 docker-compose up  
-:)
+
+To run in production:
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
