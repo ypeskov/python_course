@@ -8,20 +8,26 @@
         <div class="row">
             <table class="content">
                 <tr>
+                    <th class="password-item-container">#</th>
                     <th class="password-item-container">Resource name</th>
                     <th class="password-item-container">URL</th>
                     <th class="password-item-container">Login</th>
                     <th class="password-item-container">Password</th>
                     <th class="password-item-container">Comment</th>
+                    <th class="password-item-container">Actions</th>
                 </tr>
 
                 {% for password in passwords %}
                 <tr class="{% if loop.index % 2 == 0 %}even{% else %}odd{% endif %}">
+                    <td class="password-item-container">{{ loop.index }}</td>
                     <td class="password-item-container">{{ password.resource_name }}</td>
                     <td class="password-item-container">{{ password.url }}</td>
                     <td class="password-item-container">{{ password.login }}</td>
                     <td class="password-item-container">{{ password.password }}</td>
                     <td class="password-item-container">{{ password.comment }}</td>
+                    <td class="password-item-container">
+                        <a href="{{ url_for('pages_app.delete-password') }}?id={{ password.id }}" class="btn btn-primary">Delete</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </table>

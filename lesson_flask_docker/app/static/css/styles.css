@@ -25,7 +25,11 @@ html, body {
 }
 
 .password-item-container {
-    padding: 0 2em;
+    padding: 0.5em 2em;
+}
+
+.content tr:hover {
+    background-color: #0c5460;
 }
 
 .odd {

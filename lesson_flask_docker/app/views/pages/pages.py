@@ -10,6 +10,7 @@ url_home = 'home'
 url_list_passwords = 'list-passwords'
 url_add_password = 'add-password'
 url_create_password = 'create-password'
+url_delete_password = 'delete-password'
 
 
 @pages_app.route('/', methods=['GET'], endpoint=url_home)
@@ -49,3 +50,19 @@ def pages():
         flash('Oops, something happened')
 
     return redirect(url_for('pages_app.' + url_add_password))
+
+
+@pages_app.route('/'+url_delete_password, methods=['GET'], endpoint=url_delete_password)
+def delete_password():
+    password_id = request.args.get('id', default=None)
+
+    password = Password.query.filter_by(id=password_id).first_or_404()
+
+    try:
+        db.session.delete(password)
+        db.session.commit()
+        flash('Password was deleted successfully')
+    except Exception as e:
+        flash('Oops, something happened')
+
+    return redirect(url_for('pages_app.'+url_list_passwords))
