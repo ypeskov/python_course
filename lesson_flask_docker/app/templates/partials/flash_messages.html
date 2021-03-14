@@ -1,0 +1,13 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container flashes">
+            <div class="row">
+                <ul>
+                    {% for msg in messages %}
+                        <li>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}

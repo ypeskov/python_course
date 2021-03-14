@@ -1,4 +1,5 @@
 from datetime import date
+import pudb
 
 from vehicle import AbstractVehicle
 from vehicle.engine import Engine
@@ -27,7 +28,7 @@ if __name__ == '__main__':
     date_built = date(1991, 12, 31)
     sail_boat = SailBoat(10000, date_built, 5000, 150)
     demo(sail_boat)
-
+    pudb.set_trace()
     engine = Engine(power=500, volume=5, fuel_consumption=20)
     motor_boat = MotorBoat(weight=1000, date_built=date_built, displacement=550, engine=engine) # noqa
     engine.set_carrier(motor_boat)

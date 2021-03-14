@@ -4,6 +4,7 @@ html, body {
 
 .content-container {
     background-color: lightskyblue;
+    padding: 2em;
 }
 
 #login-button-container, .home-content {
@@ -25,4 +26,29 @@ html, body {
 
 .password-item-container {
     padding: 0 2em;
+}
+
+.odd {
+    background-color: #eee;
+}
+
+.even {
+    background-color: lightcyan;
+}
+
+.content {
+    margin: auto;
+}
+
+#password-form input {
+    margin: 1em 0;
+}
+
+.flashes {
+    background-color: lightgreen;
+    padding: 1em;
+}
+
+.flashes li {
+    list-style: none;
 }

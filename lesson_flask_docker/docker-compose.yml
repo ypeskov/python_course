@@ -6,6 +6,7 @@ services:
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres@db:5432/pswd
       - SQLALCHEMY_TRACK_MODIFICATIONS=False
+      - PYTHONUNBUFFERED=False
     volumes:
       - ./app/:/app
     ports:
