@@ -11,6 +11,6 @@ class Password(db.Model):
     password = Column(String, nullable=False, default='')
     comment = Column(String, nullable=False, default='')
 
-    def  __repr__(self):
+    def __repr__(self):
         return f'Password(resource_name={self.resource_name}, url={self.url},\
  login={self.login}, password={self.password}, comment={self.comment})'
