@@ -7,6 +7,7 @@ from users.models import CustomUser
 
 class ListPasswords(ListView):
     model = EncPassword
+    paginate_by = 10
     template_name = 'passwords/passwords_list.html'
     context_object_name = 'passwords'
 
