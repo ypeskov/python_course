@@ -1,0 +1,17 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Password Manager</title>{% endblock %}
+
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+
+<body>
+    {% include '_nav.html' %}
+    {% block content %}{% endblock %}
+</body>
+</html>
