@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from passwords.models import EncPassword
 from users.models import CustomUser
@@ -7,7 +7,7 @@ from users.models import CustomUser
 
 class ListPasswords(ListView):
     model = EncPassword
-    template_name = 'passwords/list.html'
+    template_name = 'passwords/passwords_list.html'
     context_object_name = 'passwords'
 
 
@@ -31,12 +31,17 @@ class GeneratePasswords(TemplateView):
             'passwords': passwords
         }
 
-        return render(request, 'pages/create_passwords.html', context=context)
+        return render(request, 'passwords/generate_passwords.html', context=context)
 
 
 class ClearPasswords(TemplateView):
     def get(self, request, *args, **kwargs):
-        passwords = EncPassword.objects.all().delete()
+        EncPassword.objects.all().delete()
 
         return redirect('list_passwords')
 
+
+class PasswordDetails(DetailView):
+    model = EncPassword
+    template_name = 'passwords/password_details.html'
+    context_object_name = 'password'
