@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from passwords.models import EncPassword
+
+admin.site.register(EncPassword)
