@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Passwords</h1>
+            <ul>
+            {% for password in passwords %}
+                <li><strong>Url</strong>: {{ password.url }} - <strong>Username</strong>: {{ password.username }} -&nbsp;
+                    <strong>Password</strong>: {{ password.encrypted_password }}</li>
+            {% empty %}
+                <li>No passwords yet.</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock %}

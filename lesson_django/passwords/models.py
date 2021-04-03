@@ -16,3 +16,10 @@ class EncPassword(models.Model):
     comment = models.TextField()
 
     password_user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __repr__(self):
+        return f'EncPassword(name={self.name}, url={self.url}, username={self.username},\
+         encrypted_password={self.encrypted_password}, password_user={self.password_user.id})'
+
+    def __str__(self):
+        return f'EncPassword(id={self.id}, name={self.name}, url={self.url}, username={self.username})'
