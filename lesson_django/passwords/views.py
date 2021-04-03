@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from passwords.models import EncPassword
 from users.models import CustomUser
 
 
-class ListPasswords(ListView):
+class ListPasswords(LoginRequiredMixin, ListView):
+    login_url = 'account_login'
     model = EncPassword
     paginate_by = 10
     template_name = 'passwords/passwords_list.html'
