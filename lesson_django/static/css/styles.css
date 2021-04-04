@@ -5,3 +5,7 @@
 .alert-error li {
     color: red;
 }
+
+.error p.help-block {
+    color: red;
+}
