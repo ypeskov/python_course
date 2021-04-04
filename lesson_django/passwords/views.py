@@ -8,17 +8,19 @@ from users.models import CustomUser
 
 class ListPasswords(LoginRequiredMixin, ListView):
     login_url = 'account_login'
-    model = EncPassword
-    paginate_by = 10
+    paginate_by = 50
     template_name = 'passwords/passwords_list.html'
     context_object_name = 'passwords'
+
+    def get_queryset(self):
+        return EncPassword.objects.filter(password_user=self.request.user)
 
 
 class GeneratePasswords(LoginRequiredMixin, TemplateView):
     login_url = 'account_login'
 
     def get(self, request, *args, **kwargs):
-        user = CustomUser.objects.get(username='admin')
+        user = request.user
 
         passwords = []
         for i in range(30):
