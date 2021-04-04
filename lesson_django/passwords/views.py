@@ -14,7 +14,9 @@ class ListPasswords(LoginRequiredMixin, ListView):
     context_object_name = 'passwords'
 
 
-class GeneratePasswords(TemplateView):
+class GeneratePasswords(LoginRequiredMixin, TemplateView):
+    login_url = 'account_login'
+
     def get(self, request, *args, **kwargs):
         user = CustomUser.objects.get(username='admin')
 
@@ -37,14 +39,17 @@ class GeneratePasswords(TemplateView):
         return render(request, 'passwords/generate_passwords.html', context=context)
 
 
-class ClearPasswords(TemplateView):
+class ClearPasswords(LoginRequiredMixin, TemplateView):
+    login_url = 'account_login'
+
     def get(self, request, *args, **kwargs):
         EncPassword.objects.all().delete()
 
         return redirect('list_passwords')
 
 
-class PasswordDetails(DetailView):
+class PasswordDetails(LoginRequiredMixin, DetailView):
+    login_url = 'account_login'
     model = EncPassword
     template_name = 'passwords/password_details.html'
     context_object_name = 'password'
