@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 class EncPassword(models.Model):
@@ -20,6 +21,9 @@ class EncPassword(models.Model):
     comment = models.TextField()
 
     password_user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('password_details', kwargs={'pk': self.pk})
 
     def __repr__(self):
         return f'EncPassword(name={self.name}, url={self.url}, username={self.username},\

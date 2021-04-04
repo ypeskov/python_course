@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, DetailView, View
+from django.shortcuts import render, redirect, reverse
+from django.views.generic import TemplateView, ListView, DetailView, View, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 
 from passwords.models import EncPassword
-from users.models import CustomUser
 
 
 class ListPasswords(LoginRequiredMixin, ListView):
@@ -51,19 +50,11 @@ class ClearPasswords(LoginRequiredMixin, View):
         return redirect('list_passwords')
 
 
-class PasswordDetails(LoginRequiredMixin, DetailView):
+class EncPasswordDetails(LoginRequiredMixin, DetailView):
     login_url = 'account_login'
     model = EncPassword
     template_name = 'passwords/password_details.html'
     context_object_name = 'password'
-
-    # def get(self, request, *args, **kwargs):
-    #     enc_password = EncPassword.objects.get(id=kwargs['pk'])
-    #
-    #     if request.user != enc_password.password_user:
-    #         return redirect('list_passwords')
-    #
-    #     return super().get(self, request, args, kwargs)
 
     def get_context_data(self, **kwargs):
         if self.request.user != kwargs['object'].password_user:
@@ -73,3 +64,28 @@ class PasswordDetails(LoginRequiredMixin, DetailView):
         context[self.context_object_name] = kwargs['object']
 
         return context
+
+
+class EncPasswordCreate(LoginRequiredMixin, CreateView):
+    login_url = 'account_login'
+    model = EncPassword
+    template_name = 'passwords/password_create.html'
+    fields = ('name', 'url', 'username', 'encrypted_password', 'comment',)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+
+        form.fields['name'].required = True
+        form.fields['url'].required = False
+        form.fields['username'].required = False
+        form.fields['encrypted_password'].required = False
+        form.fields['comment'].required = False
+
+        return form
+
+    def form_valid(self, form):
+        form.instance.password_user_id = self.request.user.id
+
+        return super().form_valid(form)
+
+
