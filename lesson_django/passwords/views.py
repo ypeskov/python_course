@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 
 from passwords.models import EncPassword
 from users.models import CustomUser
@@ -41,11 +42,11 @@ class GeneratePasswords(LoginRequiredMixin, TemplateView):
         return render(request, 'passwords/generate_passwords.html', context=context)
 
 
-class ClearPasswords(LoginRequiredMixin, TemplateView):
+class ClearPasswords(LoginRequiredMixin, View):
     login_url = 'account_login'
 
     def get(self, request, *args, **kwargs):
-        EncPassword.objects.all().delete()
+        EncPassword.objects.filter(password_user=request.user).delete()
 
         return redirect('list_passwords')
 
@@ -55,3 +56,20 @@ class PasswordDetails(LoginRequiredMixin, DetailView):
     model = EncPassword
     template_name = 'passwords/password_details.html'
     context_object_name = 'password'
+
+    # def get(self, request, *args, **kwargs):
+    #     enc_password = EncPassword.objects.get(id=kwargs['pk'])
+    #
+    #     if request.user != enc_password.password_user:
+    #         return redirect('list_passwords')
+    #
+    #     return super().get(self, request, args, kwargs)
+
+    def get_context_data(self, **kwargs):
+        if self.request.user != kwargs['object'].password_user:
+            raise Http404
+
+        context = super().get_context_data(**kwargs)
+        context[self.context_object_name] = kwargs['object']
+
+        return context
