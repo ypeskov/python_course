@@ -4,6 +4,10 @@ from django.contrib.auth import get_user_model
 
 
 class EncPassword(models.Model):
+    class Meta:
+        verbose_name = 'encrypted password'
+        verbose_name_plural = 'encrypted passwords'
+
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
